@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background-color: rgb(0, 0, 255);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Control Panel on left */
+.controls{
+    width: 25%;
+    height: 100vh;
+    border: solid 4px red;
+}
+.startButton {
+    width: 100px;
+    font-weight: bold;
+    color: black;
+}
+.counter{
+    color: green;
+    font-size: 40px;
+}
+.timer{
+    color:red;
+    font-size: 40px;
+}
+
+/* Card game on rigth */
+.cardGame {
+    width: 75%;
+    height: 100%;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+.flipCard {
+    height: calc(25% - 10px);
+    width: calc(25% - 10px);
+    margin: 5px;
+    position: relative;
+    transition: 1s;
+    transform-style: preserve-3d;
+}
+.cardFront, .cardBack {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border: 1px solid white;
+    background-color: aqua;
+}
+
+.flipCard.flip{
+    transform: rotateY(180deg);
+}
+.cardFront{
+    transform: rotateY(180deg);
+}

@@ -5,40 +5,75 @@
 }
 body{
     height: 100vh;
-    background-color: rgb(0, 0, 255);
+    width: 100vw;
+    background: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, .2));
     display: flex;
     flex-wrap: wrap;
+
+}
+header{
+    font-size: 75px;
+    font-weight: bold;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    height: 15vh;
+    width: 100vw;
+    text-align: center;
+    font-family: 'Ubuntu Mono', cursive;
+}
+.crossedOut{
+    text-decoration: line-through;
+    text-decoration-color: rgb(255, 0, 0);
+    text-decoration-style: wavy;
+}
+.handWritten{
+    font-family: 'Permanent Marker', cursive;
+    color: rgb(255, 35, 35);
 }
 
 /* Control Panel on left */
 .controls{
     width: 25%;
-    height: 100vh;
-    border: solid 4px red;
+    height: 85vh;
+    text-align: center;
 }
-.startButton {
-    width: 100px;
+.startButton{
+    text-align: center;
+    width: 80%;
+    padding: 10px;
     font-weight: bold;
-    color: black;
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    top: 20%;
+    background-color: rgba(48,10,36, .8);
+    border: 2px solid grey;
+    border-radius: 25px;
+    font-family: "Ubuntu Mono" , cursive;
+}
+.instruction{
+    color:black;
+    font-weight: bold;
+    position:relative;
+    top: 20%;
+    margin: 4px;
 }
 .counter{
-    color: green;
-    font-size: 40px;
+    color: black;
+    font-size: 100px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    position: relative;
+    top: 30%;
 }
-.timer{
-    color:red;
-    font-size: 40px;
-}
+
 
 /* Card game on rigth */
 .cardGame {
     width: 75%;
-    height: 100%;
+    height: 85vh;
     padding: 5px;
     display: flex;
-    flex-wrap: wrap;
-    border: 1px solid black;
-    
+    flex-wrap: wrap;    
 }
 .flipCard {
     height: calc(25% - 10px);
@@ -53,10 +88,10 @@ body{
     width: 100%;
     position: absolute;
     backface-visibility: hidden;
-    border: 1px solid white;
-    background-color: aqua;
+    border: 2px solid black;
+    background-color: rgba(0, 255, 255, 0.4);
+    border-radius: 4px;
 }
-
 .flipCard.flip{
     transform: rotateY(180deg);
 }

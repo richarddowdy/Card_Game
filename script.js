@@ -1,79 +1,114 @@
 window.onload = function(){
-    const cardGame = document.querySelectorAll(".cardGame");
     const flipCard = document.querySelectorAll(".flipCard");
-    
-    // The cards currently being compared
+    const startButton = document.querySelector(".startButton");
+
+    // Initialize the variables for the cards that are clicked and flipped
     let firstFlip, secondFlip;
 
-    // Checks to see if one card is already flipped
+    // Checks to see if one card is already flipped during flip() function
     let flipped = false;
 
     // Shorter to read than the mess it takes to find the actual image within the element
     let firstCardImg, secondCardImg;
 
-    // Making the couter
-    let counter = document.querySelector(".counter");
-    let count = 0;
-    counter.innerHTML = count;
+    // Counts the number of cards that are flipped over -- prevents more than two flipped at a time
+    let cardsFlipped = 0;
 
-    
-    function flip(){
+    // Initialize Random number variable
+    let randomNum;
+
+    // STARTS THE GAME WHEN THE START BUTTON IS CLICKED
+    startButton.addEventListener("click", startGame, true);
+
+
+    function startGame(){
+
+        // Making the couter and giving assigning it a HTML value
+        let counter = document.querySelector(".counter");
+        let count = 0;
+        counter.innerHTML = count;
+       
+        // Removes the event listener from the start button so that it cannot be clicked mid-game
+        startButton.removeEventListener("click", startGame, true);
         
-        if(this.classList[1] === "flip") {
-            // if the card has already been flipped, clicking on it will not do anything
-        } else {
-            // Add "flip" to the class list of the clicked card
-            this.classList.add("flip");
+        // Generates a random number for positioning and rearranges the flipcards
+        randomOrder();
+        
+        function flip(){
             
-            if(flipped){
-                secondFlip = this;
-                // gets second card image to compare
-                secondCardImg = this.childNodes[1].src.split("/")[this.childNodes[1].src.split("/").length -1];
-
-                secondCardImg === firstCardImg ? removeClick() : unflip();
-                
-                // after unflipping the mismatched cards, no cards are flipped
-                flipped = false;
-
+            if(this.classList[1] === "flip" || cardsFlipped > 1) {
+                // if the card has already been flipped, clicking on it will not do anything
+                // or if there are already 2 cards flipped over, do nothing
             } else {
-            firstFlip = this; 
-            // gets first clicked card image to compare
-            firstCardImg = this.childNodes[1].src.split("/")[this.childNodes[1].src.split("/").length -1];
+                // Add "flip" to the class list of the clicked card
+                this.classList.add("flip");
 
-            // sets boolean value to true when a card has been flipped
-            flipped = true; 
+                if(flipped){// if there is a card already flipped
 
+                    cardsFlipped ++; // increments the number of cards flipped to 2
+                    secondFlip = this; // assigns the second card clicked here
+
+                    // gets second card image to compare
+                    secondCardImg = this.childNodes[1].src.split("/")[this.childNodes[1].src.split("/").length -1];
+                    
+                    // compares the cards images
+                    secondCardImg === firstCardImg ? removeClick() : unflip();
+                    
+                    // after unflipping the mismatched cards, no cards are flipped
+                    flipped = false;
+
+                } else { // if a card is not currently flipped
+
+                    cardsFlipped ++; // first card flipped count
+                    firstFlip = this; // assigns the first card clicked here
+
+                    // gets first clicked card image to compare
+                    firstCardImg = this.childNodes[1].src.split("/")[this.childNodes[1].src.split("/").length -1];
+
+                    // sets boolean value to true when a card has been flipped
+                    flipped = true; 
+                }
+
+                    // Increment the flip count by one each time a card is flipped and display it in html
+                    counterAdd();
+            }      
+        } // end of flip function
+        
+
+        // Counter function
+        function counterAdd(){
+            count += 1;
+            counter.innerHTML = count; 
+        }
+
+        // Removing the click event listener
+        function removeClick(){
+            firstFlip.removeEventListener("click", flip);
+            secondFlip.removeEventListener("click", flip);
+            cardsFlipped = 0; // resets cards flipped to 0
+        }
+
+        // Removing "flip" class from card to unflip it after 1000ms (1s)
+        function unflip(){
+            setTimeout(function(){
+                firstFlip.classList.remove("flip");
+                secondFlip.classList.remove("flip");
+                cardsFlipped = 0; // resets cards flipped to 0
+            }, 1000);
+        }
+        
+        // Orders the flipcards by a randomly generated number
+        function randomOrder(){
+            for(let i = 0; i < flipCard.length; i++){ 
+                randomNum = Math.floor(Math.random() * 16);
+                flipCard[i].style.order = randomNum;
             }
-            // Incriment the flip count by one each time a card is flipped and display it in html
-            counterAdd();
-        }      
-    }
-    
-    // Counter function
-    function counterAdd(){
-        count += 1;
-        counter.innerHTML = count; 
-    }
+        }
 
+        // Iterate over each flip card and assign a CLICK event listener
+        for(let i = 0; i < flipCard.length; i++){
+            flipCard[i].addEventListener("click", flip);
+        };     
+    } // end of startGame function
 
-    // Removeing the click event listener
-    function removeClick(){
-        firstFlip.removeEventListener("click", flip);
-        secondFlip.removeEventListener("click", flip);
-    }
-
-
-    // Removing "flip" class from card to unflip it
-    function unflip(){
-        setTimeout(function(){
-            firstFlip.classList.remove("flip");
-            secondFlip.classList.remove("flip");
-        }, 1000);
-    }
-
-    
-    // Iterate over each flip card and assign a CLICK event listener
-    for(let i = 0; i < flipCard.length; i++){
-        flipCard[i].addEventListener("click", flip);
-    };
 };

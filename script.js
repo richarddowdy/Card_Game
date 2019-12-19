@@ -59,7 +59,11 @@ window.onload = function(){
                     // after unflipping the mismatched cards, no cards are flipped
                     flipped = false;
 
+                    // Increment the flip count by one each time a card is flipped and display it in html
                     counterAdd();
+
+                    // When all cards have been matched the user will receive an alert
+                    // that shows how many moves it took with the game and also reset the game
                     if(match === flipCard.length/2){
                         
                         alert(`Congratulations!\nYou won in ${count} moves.\nClick here to play again`);
@@ -77,11 +81,10 @@ window.onload = function(){
                     // sets boolean value to true when a card has been flipped
                     flipped = true; 
 
+                    // Increment the flip count by one each time a card is flipped and display it in html
                     counterAdd();
                 }
 
-                    // Increment the flip count by one each time a card is flipped and display it in html
-                    //counterAdd();
             }      
         } // end of flip function
         

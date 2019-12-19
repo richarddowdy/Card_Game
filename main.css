@@ -28,7 +28,7 @@ header{
 }
 .handWritten{
     font-family: 'Permanent Marker', cursive;
-    color: rgb(255, 35, 35);
+    color: rgb(255, 65, 65);
 }
 
 /* Control Panel on left */
@@ -46,7 +46,7 @@ header{
     color: rgba(255, 255, 255, 0.9);
     position: relative;
     top: 20%;
-    background-color: rgba(48,10,36, .8);
+    background-color: rgb(24, 66, 206);
     border: 2px solid grey;
     border-radius: 25px;
     font-family: "Ubuntu Mono" , cursive;
@@ -67,7 +67,7 @@ header{
 }
 
 
-/* Card game on rigth */
+/* Card game on right */
 .cardGame {
     width: 75%;
     height: 85vh;
@@ -89,7 +89,7 @@ header{
     position: absolute;
     backface-visibility: hidden;
     border: 2px solid black;
-    background-color: rgba(0, 255, 255, 0.4);
+    background-color: rgba(0, 217, 255, 0.4);
     border-radius: 4px;
 }
 .flipCard.flip{

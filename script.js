@@ -59,7 +59,9 @@ window.onload = function(){
                     // after unflipping the mismatched cards, no cards are flipped
                     flipped = false;
 
+                    counterAdd();
                     if(match === flipCard.length/2){
+                        
                         alert(`Congratulations!\nYou won in ${count} moves.\nClick here to play again`);
                         location.reload();
                     }
@@ -74,10 +76,12 @@ window.onload = function(){
 
                     // sets boolean value to true when a card has been flipped
                     flipped = true; 
+
+                    counterAdd();
                 }
 
                     // Increment the flip count by one each time a card is flipped and display it in html
-                    counterAdd();
+                    //counterAdd();
             }      
         } // end of flip function
         

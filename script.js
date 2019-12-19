@@ -27,7 +27,9 @@ window.onload = function(){
         let counter = document.querySelector(".counter");
         let count = 0;
         counter.innerHTML = count;
-       
+
+        let match = 0;
+        
         // Removes the event listener from the start button so that it cannot be clicked mid-game
         startButton.removeEventListener("click", startGame, true);
         
@@ -56,6 +58,11 @@ window.onload = function(){
                     
                     // after unflipping the mismatched cards, no cards are flipped
                     flipped = false;
+
+                    if(match === flipCard.length/2){
+                        alert(`Congratulations!\nYou won in ${count} moves.\nClick here to play again`);
+                        location.reload();
+                    }
 
                 } else { // if a card is not currently flipped
 
@@ -86,6 +93,7 @@ window.onload = function(){
             firstFlip.removeEventListener("click", flip);
             secondFlip.removeEventListener("click", flip);
             cardsFlipped = 0; // resets cards flipped to 0
+            match++;
         }
 
         // Removing "flip" class from card to unflip it after 1000ms (1s)
